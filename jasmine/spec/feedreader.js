@@ -110,23 +110,28 @@ $(function() {
 		 * by the loadFeed function that the content actually changes.
 		 * Remember, loadFeed() is asynchronous.
 		 */
-		let prevContent;
+    	let originalTimeout,
+    		prevContent;
 
 		beforeEach(function(done) {
-			loadFeed(1);
-			
-			setTimeout(function(){
-				prevContent = $('.feed')[0].innerText;
-				done();
-			}, 4000);
+			originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
+			jasmine.DEFAULT_TIMEOUT_INTERVAL = 20000;
+
+			loadFeed(1, function() {
+			    prevContent = $('.feed')[0].innerText;
+			    done();
+			});
 		});
 
 		it('content should change after new feed is loaded', function(done) {
-			loadFeed(0);
+			loadFeed(2, function() {
+				expect($('.feed')[0].innerText).not.toEqual(prevContent);
+				done();
+			});
+		});
 
-			expect($('.feed')[0].innerText).not.toEqual(prevContent);
-
-			done();	
+		afterEach(function() {
+			jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
 		});	
 	});
 }());
