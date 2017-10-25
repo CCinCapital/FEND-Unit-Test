@@ -77,7 +77,7 @@ $(function() {
 		* clicked and does it hide when clicked again.
 		*/
 		it('changes visibility when the menu icon is clicked', function() {
-			let menuIcon = $('.menu-icon-link')
+			let menuIcon = $('.menu-icon-link');
 
 			menuIcon.trigger('click');	// JQuery .trigger(`click`) simulates `click`
 			expect(body.hasClass('menu-hidden')).toBe(false);
@@ -102,7 +102,7 @@ $(function() {
 			expect($('.feed').has('.entry').length).toBeTruthy();
 			done();
 		});
-	})
+	});
 
 	/* TODO: Write a new test suite named "New Feed Selection" */
 	describe('New Feed Selection', function() {
@@ -117,12 +117,12 @@ $(function() {
 			
 			setTimeout(function(){
 				prevContent = $('.feed')[0].innerText;
-				done()
-			}, 4000)
+				done();
+			}, 4000);
 		});
 
 		it('content should change after new feed is loaded', function(done) {
-			loadFeed(0)
+			loadFeed(0);
 
 			expect($('.feed')[0].innerText).not.toEqual(prevContent);
 
