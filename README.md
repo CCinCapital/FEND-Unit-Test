@@ -2,6 +2,9 @@
 
 Implements automated tests for to test existing JS code base using Jasmine.js
 
+# Live Preview
+[Live Preview](https://ccincapital.github.io/FEND-Unit-Test/) on GitHub.
+
 # Tests implemented
 - test if a variable is defined
 - test if an action is fired correctly when a DOM element is clicked
